@@ -1,0 +1,65 @@
+{
+ "title": "Prototipe Simulasi Kepala Cabang Bank (Executive Decision Lab)",
+ "type": ["app"],
+ "goal": "Memberi manajer perbankan sebuah simulasi 15 keputusan sebagai Kepala Cabang yang konsekuensinya berantai, lalu menghasilkan laporan penilaian yang terasa nyata dan spesifik untuk orang itu.",
+ "success": "Dalam uji internal, setiap penguji menyelesaikan 15 keputusan sampai laporan akhir; mayoritas penguji menyebut situasi dan angka terasa seperti pekerjaan kepala cabang sungguhan, dan laporannya dinilai sesuai dengan cara mereka memutuskan.",
+ "users": "Awalnya pemilik produk dan rekan kerja (uji internal), kemudian dibagikan ke pengguna perbankan. Pemainnya level manager; paham perbankan tingkat menengah hingga tinggi.",
+ "must_have": [
+  {"item": "Briefing tugas dan profil kantor fiktif bergaya bank besar dengan unit mikro/KUR di bawahnya, tanpa merek asli", "accept": "Buka halaman awal: terlihat briefing peran, nama fiktif, dan tidak ada merek bank asli di layar mana pun."},
+  {"item": "Dashboard kondisi cabang yang ikut berubah setelah tiap keputusan (misal NPL, dana pihak ketiga, target kredit, moral tim, hubungan dengan regional, risiko kepatuhan)", "accept": "Catat angka awal, ambil keputusan 1, lihat angka berubah dan ada ringkasan sebab-akibat singkat; ulangi dengan jawaban berbeda dan angkanya berbeda."},
+  {"item": "15 keputusan dalam 5 babak x 3 keputusan, tiap keputusan berformat pilihan lalu penjelasan alasan (campuran)", "accept": "Mainkan sampai akhir: tepat 15 keputusan, tiap keputusan meminta pilihan dan alasan tertulis, tombol lanjut tidak aktif jika alasan kosong."},
+  {"item": "Konsekuensi berantai: keputusan sebelumnya mengubah situasi, tokoh, atau angka pada keputusan berikutnya", "accept": "Mainkan dua kali dengan pola berbeda (agresif vs hati-hati) di babak 1; teks situasi di babak 3 dan 4 berbeda secara nyata dan menyebut akibat dari pilihan sebelumnya."},
+  {"item": "Aspek interpersonal diukur lewat keputusan tertulis yang melibatkan anak buah, nasabah, atasan regional, atau regulator", "accept": "Minimal 5 dari 15 keputusan melibatkan orang tertentu dan menilai cara peserta menanganinya; peserta hanya menulis, tidak ada fitur percakapan."},
+  {"item": "Penilaian kesiapan calon leader pada tujuh dimensi (ketajaman bisnis dan risiko, pemikiran strategis, memimpin orang, pengaruh dan komunikasi, integritas dan keberanian moral, ketangguhan, ketangkasan belajar dan akuntabilitas), dengan alasan per dimensi", "accept": "Selesai bermain: tiap dimensi punya skor dan satu alasan yang mengutip jawaban peserta sendiri."},
+  {"item": "Tingkat kesiapan (Emerging, Developing, Ready, Board-Ready) dan tipe kepemimpinan utama serta pendamping dari 16 tipe, dengan tokoh dunia sebagai analogi gaya, kekuatan, dan titik buta", "accept": "Mainkan dua kali dengan pola jawaban berlawanan: tingkat kesiapan atau tipe utama berbeda; tiap tipe menampilkan nama tokoh, kekuatan, titik buta, dan catatan bahwa ini gambaran gaya, bukan diagnosis."},
+  {"item": "Laporan akhir spesifik per peserta, tampil di layar, bergaya laporan assessment (bukan skor game)", "accept": "Dua peserta dengan jawaban berbeda mendapat laporan yang isi, tipe, dan kutipan buktinya berbeda; ada ringkasan, timeline keputusan, dampak ke angka cabang, skor dimensi, momen penentu, kekuatan, dan area pengembangan."},
+  {"item": "Seluruh teks dalam Bahasa Indonesia profesional dengan istilah perbankan yang tepat", "accept": "Baca seluruh layar dan laporan: tidak ada istilah Inggris yang tidak perlu, tidak ada istilah perbankan yang keliru menurut reviewer yang paham bank."}
+ ],
+ "nice_to_have": [
+  "Unduh laporan sebagai PDF",
+  "Penyimpanan hasil agar bisa dibandingkan antarpeserta",
+  "Pengacakan urutan kasus agar dua sesi tidak persis sama"
+ ],
+ "out_of_scope": [
+  "Login dan akun pengguna",
+  "Dashboard admin dan undangan peserta",
+  "Dialog bolak-balik dengan karakter AI",
+  "Aplikasi HP atau aplikasi desktop",
+  "Sektor usaha lain, serta jabatan lain selain kepala cabang",
+  "Sambungan ke sistem internal pengguna atau HRIS",
+  "Multiplayer"
+ ],
+ "constraints": [
+  "Berjalan di browser laptop; mudah dipindah ke web nanti",
+  "Tidak ada biaya di awal; lapisan AI dibuat bisa diganti penyedia",
+  "Tidak menyebut merek bank nyata",
+  "Pemilik produk tidak berlatar teknis; semua langkah harus dijelaskan sederhana"
+ ],
+ "assumptions": [
+  {"text": "Lapisan AI dibuat bisa ditukar. Untuk mulai tanpa biaya, kita pakai penyedia AI dengan tingkat gratis atau mode contoh dulu; kualitas penilaian bisa di bawah model berbayar dan harus diuji sebelum dibagikan ke pihak lain.", "from": "app-platform", "risk": "high"},
+  {"text": "Angka kondisi cabang dihitung dengan aturan tetap yang transparan; AI hanya menulis narasi situasi dan menilai jawaban, bukan menentukan angka.", "from": "inferred", "risk": "high"},
+  {"text": "Cabang yang disimulasikan adalah cabang kota menengah dengan beberapa unit mikro/KUR di bawahnya, sekitar puluhan karyawan; angka acuan disusun dari pengetahuan umum perbankan ritel Indonesia dan perlu direview orang yang paham bank.", "from": "inferred", "risk": "high"},
+  {"text": "Belum ada ahli perbankan yang me-review skenario; draf skenario dan angka disusun Claude, lalu dicek pemilik produk dan rekan sebelum dimainkan.", "from": "u-material", "risk": "high"},
+  {"text": "Dimensi penilaian berorientasi kesiapan calon leader (bukan kecakapan teknis semata): tujuh dimensi termasuk ketangkasan belajar dan akuntabilitas. Tipe kepemimpinan mengukur gaya, terpisah dari tingkat kesiapan.", "from": "inferred", "risk": "med"},
+  {"text": "Kecocokan tokoh dunia dengan tiap tipe adalah persepsi publik atas gaya mereka, bukan fakta yang diverifikasi; pemilik produk meninjau daftar tokoh sebelum dibagikan ke pihak lain.", "from": "inferred", "risk": "high"},
+  {"text": "Hasil tidak disimpan setelah laporan ditutup; peserta dapat menyalin atau mencetak laporan dari browser.", "from": "app-data", "risk": "med"},
+  {"text": "Satu orang bermain satu sesi tanpa akun; 45 sampai 75 menit.", "from": "app-users", "risk": "med"},
+  {"text": "Tampilan sederhana, netral, dan profesional seperti dokumen assessment; tanpa gamifikasi.", "from": "u-love-hate", "risk": "med"},
+  {"text": "Tidak ada tenggat keras; versi pertama lengkap dari awal sampai laporan tetapi tampilannya polos.", "from": "u-deadline", "risk": "low"},
+  {"text": "Pemilik produk satu-satunya penyetuju sebelum dibagikan ke pihak lain.", "from": "u-signoff", "risk": "low"}
+ ],
+ "reject_if": [
+  "Laporan terasa generik: bisa ditukar antarpeserta tanpa ada yang sadar",
+  "Situasi atau angka tidak menggambarkan pekerjaan kepala cabang sungguhan",
+  "Istilah atau proses perbankan keliru",
+  "Skor tidak bisa dijelaskan dengan kutipan jawaban peserta",
+  "Terasa seperti ujian pilihan ganda atau game, bukan assessment",
+  "Keputusan awal tidak berdampak pada keputusan berikutnya",
+  "Nama bank nyata muncul di mana pun"
+ ],
+ "open_risks": [
+  "Penilaian AI tingkat gratis mungkin kurang konsisten; perlu uji ulang dengan jawaban yang sama dua kali",
+  "Realisme bergantung pada review ahli perbankan yang belum ada",
+  "Bank pengguna mungkin meminta penyimpanan data dan keamanan sebelum pakai sungguhan"
+ ]
+}
